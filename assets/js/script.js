@@ -1,43 +1,48 @@
-let container = $("#container");
 //DECLARE current time
-let currentTime = moment().format();
+var currentTime = moment().format("HH:mm:ss");
 console.log(currentTime);
 
 //DECLARE current hour
-let currentHour = moment().hour()
+var currentHour = moment().hour()
 console.log(currentHour);
   
 //DECLARE current day html event
-let 
+var currentDay = moment().format('dddd, MMM Do YYYY');
+console.log(currentDay);
+$("#currentDay").html(currentDay);
 
 //DECLARE time entries container HTML element
-var containerEl; 
+var containerEl = $(".container");
+console.log(containerEl);
 
 //render a block for each hour of the day
-for(var i=9; i<=17; i++) {
+for(var i=8; i<=17; i++) {
 
     var key = "hour-" + i;
     var data = "";
     //attempt to get the saved data for the hour of the loop
 
+
     //compare i to current hour to determine if this hour is in the past present or future
+    
     
     var template = 
     `      
-    <div class="row">
-        <div>
-            ${i}AM
+    <div class="row time-block">
+        <div class="col-md-1 hour">
+            ${i}
+        </div>
+        <div class="col-md-1">
+          <textarea class="col-md-10 description">${data}</textarea>
         </div>
         <div>
-          <textarea>${data}</textarea>
-        </div>
-        <div>
-          <button data-hour=${i}></button>
+          <button class="btn saveBtn fas fa-save" data-hour=${i}></button>
         </div>
     </div>
     `;
   
   //append the html to the container object
+  containerEl.append(template);
 }
 
 //setting up a "click" event listener on the container
